@@ -1,0 +1,232 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Latitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Longtitude" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VehicleAreas" Relationship="dbCarRentalModel.FK_VehicleArea_Branch" FromRole="Branch" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="VehicleRentArea">
+    <Key>
+      <PropertyRef Name="VehicleRentAreaID" />
+    </Key>
+    <Property Name="VehicleRentAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" />
+    <Property Name="RentDate" Type="DateTime" Precision="3" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="3" />
+    <Property Name="ActualReturnDate" Type="DateTime" Precision="3" />
+    <Property Name="VehicleAreaID" Type="Int32" />
+    <NavigationProperty Name="User" Relationship="dbCarRentalModel.FK_VehicleRentArea_Users" FromRole="VehicleRentArea" ToRole="User" />
+    <NavigationProperty Name="VehicleArea" Relationship="dbCarRentalModel.FK_VehicleRentArea_VehicleArea" FromRole="VehicleRentArea" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DayCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="LateDayCost" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="ModelYear" Type="Int32" />
+    <Property Name="Gear" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Class" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="VehicleImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VehicleAreas" Relationship="dbCarRentalModel.FK_VehicleArea_VehicleType" FromRole="VehicleType" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityContainer Name="dbCarRentalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Branches" EntityType="Self.Branch" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+    <EntitySet Name="VehicleRentAreas" EntityType="Self.VehicleRentArea" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+    <EntitySet Name="Users" EntityType="dbCarRentalModel.User" />
+    <AssociationSet Name="FK_VehicleRentArea_Users" Association="dbCarRentalModel.FK_VehicleRentArea_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentAreas" />
+    </AssociationSet>
+    <EntitySet Name="Admins" EntityType="dbCarRentalModel.Admin" />
+    <EntitySet Name="Employees" EntityType="dbCarRentalModel.Employee" />
+    <FunctionImport Name="sp_alterdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_creatediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="version" Mode="In" Type="Int32" />
+      <Parameter Name="definition" Mode="In" Type="Binary" />
+    </FunctionImport>
+    <FunctionImport Name="sp_dropdiagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(dbCarRentalModel.sp_helpdiagramdefinition_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(dbCarRentalModel.sp_helpdiagrams_Result)">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="sp_renamediagram">
+      <Parameter Name="diagramname" Mode="In" Type="String" />
+      <Parameter Name="owner_id" Mode="In" Type="Int32" />
+      <Parameter Name="new_diagramname" Mode="In" Type="String" />
+    </FunctionImport>
+    <FunctionImport Name="sp_upgraddiagrams" />
+    <EntitySet Name="VehicleAreas" EntityType="dbCarRentalModel.VehicleArea" />
+    <AssociationSet Name="FK_VehicleArea_Branch" Association="dbCarRentalModel.FK_VehicleArea_Branch">
+      <End Role="Branch" EntitySet="Branches" />
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleArea_VehicleType" Association="dbCarRentalModel.FK_VehicleArea_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleRentArea_VehicleArea" Association="dbCarRentalModel.FK_VehicleRentArea_VehicleArea">
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentAreas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" />
+    <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ValidPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="VehicleRentAreas" Relationship="dbCarRentalModel.FK_VehicleRentArea_Users" FromRole="User" ToRole="VehicleRentArea" />
+    <Property Name="UserAuthorization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_VehicleRentArea_Users">
+    <End Type="dbCarRentalModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="dbCarRentalModel.VehicleRentArea" Role="VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AdminFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrivateAdminID" Type="Int32" />
+    <Property Name="AdminEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminValidPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminBirthDate" Type="DateTime" Precision="0" />
+    <Property Name="AdminImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AdminGender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="AdminUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AdminAuthorization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeFullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="PrivateEmployeeID" Type="Int32" />
+    <Property Name="EmployeeEmail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeePassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeValidPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeBirthDate" Type="DateTime" Precision="0" />
+    <Property Name="EmployeeImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeGender" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="EmployeeUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeAuthorization" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <ComplexType Name="sp_helpdiagramdefinition_Result">
+    <Property Type="Int32" Name="version" Nullable="true" />
+    <Property Type="Binary" Name="definition" Nullable="true" />
+  </ComplexType>
+  <ComplexType Name="sp_helpdiagrams_Result">
+    <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+    <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+    <Property Type="Int32" Name="ID" Nullable="false" />
+    <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+    <Property Type="Int32" Name="OwnerID" Nullable="false" />
+  </ComplexType>
+  <EntityType Name="VehicleArea">
+    <Key>
+      <PropertyRef Name="VehicleAreaID" />
+    </Key>
+    <Property Name="VehicleAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleTypeID" Type="Int32" />
+    <Property Name="CurrentKMPH" Type="Int32" />
+    <Property Name="IsAvailable" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IsProper" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LicenseNum" Type="Int32" />
+    <Property Name="BranchID" Type="Int32" />
+    <Property Name="VehicleAreaImage" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Branch" Relationship="dbCarRentalModel.FK_VehicleArea_Branch" FromRole="VehicleArea" ToRole="Branch" />
+    <NavigationProperty Name="VehicleType" Relationship="dbCarRentalModel.FK_VehicleArea_VehicleType" FromRole="VehicleArea" ToRole="VehicleType" />
+    <NavigationProperty Name="VehicleRentAreas" Relationship="dbCarRentalModel.FK_VehicleRentArea_VehicleArea" FromRole="VehicleArea" ToRole="VehicleRentArea" />
+  </EntityType>
+  <Association Name="FK_VehicleArea_Branch">
+    <End Type="dbCarRentalModel.Branch" Role="Branch" Multiplicity="0..1" />
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleArea_VehicleType">
+    <End Type="dbCarRentalModel.VehicleType" Role="VehicleType" Multiplicity="0..1" />
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleTypeID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="VehicleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleRentArea_VehicleArea">
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="0..1" />
+    <End Type="dbCarRentalModel.VehicleRentArea" Role="VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

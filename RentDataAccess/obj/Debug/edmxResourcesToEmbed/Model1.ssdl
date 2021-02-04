@@ -1,0 +1,214 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCarRentalModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AdminFullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrivateAdminID" Type="int" />
+    <Property Name="AdminEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdminPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdminValidPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdminBirthDate" Type="date" />
+    <Property Name="AdminImage" Type="nvarchar(max)" />
+    <Property Name="AdminGender" Type="nchar" MaxLength="10" />
+    <Property Name="AdminUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="AdminAuthorization" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Branch">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="Latitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="Longtitude" Type="nvarchar" MaxLength="50" />
+    <Property Name="BranchName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Employees">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeFullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="PrivateEmployeeID" Type="int" />
+    <Property Name="EmployeeEmail" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeePassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeValidPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeBirthDate" Type="date" />
+    <Property Name="EmployeeImage" Type="nvarchar(max)" />
+    <Property Name="EmployeeGender" Type="nchar" MaxLength="10" />
+    <Property Name="EmployeeUserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeAuthorization" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ID" Type="int" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+    <Property Name="BirthDate" Type="date" />
+    <Property Name="Gender" Type="nchar" MaxLength="10" />
+    <Property Name="Email" Type="nvarchar" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" />
+    <Property Name="ValidPassword" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserImage" Type="nvarchar(max)" />
+    <Property Name="UserAuthorization" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="VehicleArea">
+    <Key>
+      <PropertyRef Name="VehicleAreaID" />
+    </Key>
+    <Property Name="VehicleAreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VehicleTypeID" Type="int" />
+    <Property Name="CurrentKMPH" Type="int" />
+    <Property Name="IsAvailable" Type="nchar" MaxLength="10" />
+    <Property Name="IsProper" Type="nchar" MaxLength="10" />
+    <Property Name="LicenseNum" Type="int" />
+    <Property Name="BranchID" Type="int" />
+    <Property Name="VehicleAreaImage" Type="nvarchar(max)" />
+  </EntityType>
+  <EntityType Name="VehicleRentArea">
+    <Key>
+      <PropertyRef Name="VehicleRentAreaID" />
+    </Key>
+    <Property Name="VehicleRentAreaID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserID" Type="int" />
+    <Property Name="RentDate" Type="datetime" />
+    <Property Name="ReturnDate" Type="datetime" />
+    <Property Name="ActualReturnDate" Type="datetime" />
+    <Property Name="VehicleAreaID" Type="int" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Manufacturer" Type="nvarchar" MaxLength="50" />
+    <Property Name="Model" Type="nvarchar" MaxLength="50" />
+    <Property Name="DayCost" Type="money" />
+    <Property Name="LateDayCost" Type="money" />
+    <Property Name="ModelYear" Type="int" />
+    <Property Name="Gear" Type="nchar" MaxLength="10" />
+    <Property Name="Class" Type="nchar" MaxLength="10" />
+    <Property Name="VehicleImage" Type="nvarchar(max)" />
+  </EntityType>
+  <Association Name="FK_VehicleArea_Branch">
+    <End Role="Branch" Type="Self.Branch" Multiplicity="0..1" />
+    <End Role="VehicleArea" Type="Self.VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Branch">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleArea_VehicleType">
+    <End Role="VehicleType" Type="Self.VehicleType" Multiplicity="0..1" />
+    <End Role="VehicleArea" Type="Self.VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleTypeID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="VehicleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleRentArea_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="VehicleRentArea" Type="Self.VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleRentArea_VehicleArea">
+    <End Role="VehicleArea" Type="Self.VehicleArea" Multiplicity="0..1" />
+    <End Role="VehicleRentArea" Type="Self.VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+  <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="version" Type="int" Mode="In" />
+    <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+  </Function>
+  <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+  </Function>
+  <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+    <Parameter Name="owner_id" Type="int" Mode="In" />
+    <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+  </Function>
+  <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <EntityContainer Name="dbCarRentalModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Branch" EntityType="Self.Branch" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Employees" EntityType="Self.Employees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleArea" EntityType="Self.VehicleArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleRentArea" EntityType="Self.VehicleRentArea" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="VehicleType" EntityType="Self.VehicleType" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_VehicleArea_Branch" Association="Self.FK_VehicleArea_Branch">
+      <End Role="Branch" EntitySet="Branch" />
+      <End Role="VehicleArea" EntitySet="VehicleArea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleArea_VehicleType" Association="Self.FK_VehicleArea_VehicleType">
+      <End Role="VehicleType" EntitySet="VehicleType" />
+      <End Role="VehicleArea" EntitySet="VehicleArea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleRentArea_Users" Association="Self.FK_VehicleRentArea_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentArea" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleRentArea_VehicleArea" Association="Self.FK_VehicleRentArea_VehicleArea">
+      <End Role="VehicleArea" EntitySet="VehicleArea" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentArea" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

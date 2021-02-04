@@ -1,0 +1,180 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="dbCarRentalModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="BranchInfo">
+    <Key>
+      <PropertyRef Name="BranchID" />
+    </Key>
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationLat" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationLong" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="BranchName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VehicleAreas" Relationship="dbCarRentalModel.FK_VehicleArea_BranchInfo" FromRole="BranchInfo" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityType Name="VehicleRentArea">
+    <Key>
+      <PropertyRef Name="RentID" />
+      <PropertyRef Name="VehicleRentAreaID" />
+    </Key>
+    <Property Name="RentID" Type="Int32" Nullable="false" />
+    <Property Name="RentDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="ReturnDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="ActualReturnDate" Type="DateTime" Precision="3" Nullable="false" />
+    <Property Name="RentUserID" Type="Int32" />
+    <Property Name="RentLicenseNum" Type="Int32" />
+    <Property Name="VehicleRentAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="VehicleAreaID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="dbCarRentalModel.FK_VehicleRentArea_Users" FromRole="VehicleRentArea" ToRole="User1" />
+    <NavigationProperty Name="VehicleArea" Relationship="dbCarRentalModel.FK_VehicleRentArea_VehicleArea1" FromRole="VehicleRentArea" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityType Name="VehicleType">
+    <Key>
+      <PropertyRef Name="VehicleTypeID" />
+    </Key>
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+    <Property Name="Manufacturer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DayCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="LateDayCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="ModelYear" Type="Int32" Nullable="false" />
+    <Property Name="Gear" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="VehicleAreas" Relationship="dbCarRentalModel.FK_VehicleArea_VehicleType1" FromRole="VehicleType" ToRole="VehicleArea" />
+  </EntityType>
+  <EntityContainer Name="dbCarRentalEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="BranchInfoes" EntityType="Self.BranchInfo" />
+    <EntitySet Name="VehicleRentAreas" EntityType="Self.VehicleRentArea" />
+    <EntitySet Name="VehicleTypes" EntityType="Self.VehicleType" />
+    <EntitySet Name="Admins" EntityType="dbCarRentalModel.Admin" />
+    <EntitySet Name="Employees" EntityType="dbCarRentalModel.Employee" />
+    <EntitySet Name="sysdiagrams" EntityType="dbCarRentalModel.sysdiagram" />
+    <EntitySet Name="Users" EntityType="dbCarRentalModel.User" />
+    <EntitySet Name="VehicleAreas" EntityType="dbCarRentalModel.VehicleArea" />
+    <AssociationSet Name="FK_VehicleArea_BranchInfo" Association="dbCarRentalModel.FK_VehicleArea_BranchInfo">
+      <End Role="BranchInfo" EntitySet="BranchInfoes" />
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleRentArea_Users" Association="dbCarRentalModel.FK_VehicleRentArea_Users">
+      <End Role="User1" EntitySet="Users" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleArea_VehicleType1" Association="dbCarRentalModel.FK_VehicleArea_VehicleType1">
+      <End Role="VehicleType" EntitySet="VehicleTypes" />
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+    </AssociationSet>
+    <AssociationSet Name="FK_VehicleRentArea_VehicleArea1" Association="dbCarRentalModel.FK_VehicleRentArea_VehicleArea1">
+      <End Role="VehicleArea" EntitySet="VehicleAreas" />
+      <End Role="VehicleRentArea" EntitySet="VehicleRentAreas" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admin">
+    <Key>
+      <PropertyRef Name="AdminID" />
+    </Key>
+    <Property Name="AdminID" Type="Int32" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Password" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ValidPassword" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Employee">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Password" Type="Int32" Nullable="false" />
+    <Property Name="ValidPassword" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="sysdiagram">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="UserID" />
+    </Key>
+    <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ID" Type="Int32" Nullable="false" />
+    <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="BirthDate" Type="DateTime" Precision="0" />
+    <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="ValidPassword" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <NavigationProperty Name="VehicleRentAreas" Relationship="dbCarRentalModel.FK_VehicleRentArea_Users" FromRole="User1" ToRole="VehicleRentArea" />
+  </EntityType>
+  <EntityType Name="VehicleArea">
+    <Key>
+      <PropertyRef Name="VehicleAreaID" />
+    </Key>
+    <Property Name="VehicleAreaID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VehicleTypeID" Type="Int32" Nullable="false" />
+    <Property Name="CurrentKMPH" Type="Int32" Nullable="false" />
+    <Property Name="Image" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="IsAvailable" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="IsProper" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="LicenseNum" Type="Int32" Nullable="false" />
+    <Property Name="BranchID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="BranchInfo" Relationship="dbCarRentalModel.FK_VehicleArea_BranchInfo" FromRole="VehicleArea" ToRole="BranchInfo" />
+    <NavigationProperty Name="VehicleType" Relationship="dbCarRentalModel.FK_VehicleArea_VehicleType1" FromRole="VehicleArea" ToRole="VehicleType" />
+    <NavigationProperty Name="VehicleRentAreas" Relationship="dbCarRentalModel.FK_VehicleRentArea_VehicleArea1" FromRole="VehicleArea" ToRole="VehicleRentArea" />
+  </EntityType>
+  <Association Name="FK_VehicleArea_BranchInfo">
+    <End Type="dbCarRentalModel.BranchInfo" Role="BranchInfo" Multiplicity="1" />
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="BranchInfo">
+        <PropertyRef Name="BranchID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="BranchID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleRentArea_Users">
+    <End Type="dbCarRentalModel.User" Role="User1" Multiplicity="1" />
+    <End Type="dbCarRentalModel.VehicleRentArea" Role="VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User1">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleArea_VehicleType1">
+    <End Type="dbCarRentalModel.VehicleType" Role="VehicleType" Multiplicity="1" />
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleType">
+        <PropertyRef Name="VehicleTypeID" />
+      </Principal>
+      <Dependent Role="VehicleArea">
+        <PropertyRef Name="VehicleTypeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_VehicleRentArea_VehicleArea1">
+    <End Type="dbCarRentalModel.VehicleArea" Role="VehicleArea" Multiplicity="1" />
+    <End Type="dbCarRentalModel.VehicleRentArea" Role="VehicleRentArea" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="VehicleArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Principal>
+      <Dependent Role="VehicleRentArea">
+        <PropertyRef Name="VehicleAreaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>
