@@ -1,0 +1,78 @@
+table{
+    margin: 30px auto;
+
+}
+
+table,th,td{
+
+    border: 1px solid blue;
+    margin: auto;
+    text-align: center;
+    padding:5px;
+
+}
+
+tr:nth-child(even){
+
+    background-color: lightblue;
+}
+
+tr:nth-child(odd){
+
+    background-color: lightcoral;
+}
+
+.carFilterRow{
+
+    padding-top: 30px; 
+    text-align: left;
+}
+
+.carFilterSelect{
+
+    padding-bottom: 30px;
+}
+
+.carCard{
+
+    width:350px; 
+    margin-bottom: 20px;
+}
+
+.card{
+
+    box-shadow: 2px 3px 3px black !important;
+    border-radius: 5px;
+    border: 3px solid rgb(255,184,10);
+}
+
+p {
+
+    text-align: left;
+}
+
+button{
+
+    background-color: rgb(235, 170, 6);
+}
+
+.refBtn{
+
+    border-radius: 5px;
+    transform: translateX(110%); 
+    width: 15%; 
+    height: 60%;
+}
+
+.btn, .btn-primary{
+
+    background-color: rgb(255,184,10);
+    border: none;
+}
+
+.imageSize {
+
+    width: 280px; 
+    height: 200px; 
+    transform: translateX(10%);
+}

@@ -1,0 +1,87 @@
+<mat-tab-group mat-align-tabs="center">
+
+    <mat-tab label="Login">
+
+        <div class="container mt-5 border border-warning ">
+            <div class="row text-center">
+                <div class="col-12 border border-warning bg-dark">
+                    <h3 class="text-warning p-2">Login</h3>
+                </div>
+            </div>
+            <div class="row p-2 m-3 text-center">
+                <div class="col-3"></div>
+                <div class="form-group col-6">
+                    <input type="text" placeholder="Email" [(ngModel)]="signUpUser.Email" class="form-control m-2">
+                    <input type="password" placeholder="Password" [(ngModel)]="signUpUser.Password"
+                        class="form-control m-2">
+                    <input type="password" placeholder="ValidPassword" [(ngModel)]="signUpUser.ValidPassword"
+                        class="form-control m-2">
+                    Connection Type:<select [(ngModel)]="userType" class="form-control m-2">
+                        <option value="user">User</option>
+                        <option value="employee">Employee</option>
+                        <option value="admin">Admin</option>
+                    </select>
+                </div>
+                <div class="col-3"></div>
+            </div>
+            <div class="row p-2 m-3 text-center">
+                <div class="col-12">
+                    <p>If you are not registered , please sign up.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <button class="btn btn-success btnSubmit" (click)="loginUser(signUpUser.Email, signUpUser.Password,signUpUser.ValidPassword)">Submit</button>
+                </div>
+            </div>
+        </div>
+
+    </mat-tab>
+
+    <mat-tab label="Sign-Up">
+        <div class="container mt-5 border border-warning ">
+            <div class="row">
+                <div class="col-12 border border-warning bg-dark">
+                    <h3 class="text-warning p-2"> Sign Up</h3>
+                </div>
+            </div>
+            <div class="row p-2 mt-3">
+                <div class="col-3"></div>
+                <div class="col-6">
+                    <input type="text" placeholder="Full Name" [(ngModel)]="signUpUser.FullName"
+                        class="form-control  mt-1">
+                    <input type="text" placeholder="User Name" [(ngModel)]="signUpUser.UserName"
+                        class="form-control  mt-1">
+                    <input type="number" placeholder="ID" [(ngModel)]="signUpUser.ID" class="form-control  mt-1">
+                    <label style="text-align: left !important">Birth Date:</label>
+                    <input type="date" [(ngModel)]="signUpUser.BirthDate" class="form-control mt-1">
+                    <label style="text-align: left;">Gender:</label>
+                    <select [(ngModel)]="signUpUser.Gender" class="form-control mt-1">
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                    <input type="text" placeholder="Email" [(ngModel)]="signUpUser.Email" class="form-control mt-1">
+                    <input type="password" placeholder="Passord" [(ngModel)]="signUpUser.Password"
+                        class="form-control mt-1">
+                    <input type="password" placeholder="Valid Passord" [(ngModel)]="signUpUser.ValidPassword"
+                        class="form-control mt-1">
+                    <label style="text-align: left;">Image:</label>
+                    <input type="file" [ngModel]="signUpUser.UserImage" class="form-control mt-1"
+                        (change)="modalSignUpUserImageChange($event)">
+                </div>
+                <div class="col-3"></div>
+            </div>
+
+        </div>
+        <div class="container">
+            <div class="row mt-3 text-center">
+                <div class="col-12 ">
+                    <button class="btn btn-success btnSubmit" (click)="PostSignUpUser()">Submit</button>
+                </div>
+            </div>
+        </div>
+    </mat-tab>
+
+</mat-tab-group>

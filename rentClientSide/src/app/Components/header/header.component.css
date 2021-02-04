@@ -1,0 +1,58 @@
+/* start of menu bar */
+/* Add a black background color to the top navigation */
+.showBtn {
+  display:block;
+}
+.hideBtn{
+  display:none
+}
+
+.topnav {
+
+    background-color: #333;
+    overflow: hidden;
+    height:100%;
+  }
+  
+  /* Style the links inside the navigation bar */
+
+.topnavnav a {
+
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: 22px;
+  position:relative;
+}
+  
+  /* Change the color of links on hover */
+.topnavnav a:hover {
+
+  background-color: rgb(255,184,10);
+  color: black;
+}
+  
+  /* Add a color to the active/current link */
+.topnavnav a.active {
+
+  background-color: rgb(255,184,10);
+  color: black;
+}
+
+button{
+
+  background-color: rgb(255,184,10);
+}
+
+ .rowStyle{
+
+  transform: translateY(69%);
+} 
+.saveModal{
+
+  width: 100%; 
+  background-color: rgb(255,184,10);
+  border: none;
+}
+  /* end of menu bar */

@@ -1,0 +1,128 @@
+<!-- Employee Panel -->
+
+<!-- Employee Rent Area Management -->
+<div style="height: 50%;" class="row bg-dark">
+  <div class="col-12 p-3">
+    <h5 class="searchLabel">License Search</h5>
+    <input class="searchTab" style="width: 10%;" (change)="filterCarByNum($event)" type="number" class="form-control">
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-12">
+    <table *ngIf="allRents" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">User ID</th>
+          <th scope="col">License Number</th>
+          <th scope="col">Rental Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Actual Return Date</th>
+          <th scope="col">Vehicle Area ID</th>
+          <th scope="col">Is Available</th>
+          <th scope="col">Receipt</th>
+          <th scope="col">Edit</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let r of allRents">
+        <tr>
+          <th scope="row">{{r.VehicleRentAreaID}}</th>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.UserID}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent"> {{r.UserID}}</td>
+          
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.LicenseNum}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent"> {{r.LicenseNum}}</td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.RentDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent">
+            <input disabled #rentDate style="width:60%" class="form-control-sm" [value]="r.RentDate" type="date">
+          </td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.ReturnDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent">
+            <input disabled #returnDate style="width:60%" class="form-control-sm" [value]="r.ReturnDate" type="date">
+          </td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.ActualReturnDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent">
+            <input #actualReturnDate style="width:60%" class="form-control-sm" [value]="r.ActualReturnDate" type="date">
+          </td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.VehicleAreaID}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent">
+            <input disabled #vehicleAreaID style="width:60%" class="form-control-sm" [value]="r.VehicleAreaID" type="number">
+          </td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent">{{r.IsAvailable}}</td>
+          <td *ngIf="r.VehicleRentAreaID==editRent">{{r.IsAvailable}}</td>
+
+          <td *ngIf="r.IsAvailable.trim() == 'Yes'"><button class="btn btn-warning"><i
+                (click)="printReceipt(r.VehicleAreaID)" class="fa fa-print" aria-hidden="true"></i></button></td>
+                <td *ngIf="r.IsAvailable.trim() == 'No'"></td>
+
+          <td *ngIf="r.VehicleRentAreaID!=editRent"><button class="editBtn"
+              (click)="editVRentArea(r.VehicleRentAreaID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="r.VehicleRentAreaID==editRent"><button class="editBtn"
+              (click)="updateVehicleRentArea(r.VehicleRentAreaID,r.IsAvailable)"><i class="fa fa-check"></i></button>
+          </td>
+        </tr>
+        <!-- End Employee Rent Area Management-->
+
+        <!-- Employee Vehicle Area Management -->
+
+        <!-- End Employee Vehicle Area Management -->
+
+      </tbody>
+    </table>
+
+
+
+  </div>
+</div>
+
+
+  <div style="position: absolute;top:20%;left:20%;" *ngIf="showReceipt == true" class="container bg-light border border-warning rounded shadow-lg">
+    <div style="background: black;" class="row text-center">
+      <div class="col-4">
+        
+      </div>
+      <div class="col-4">
+        <h4 class="text-warning p-3">Receipt Details</h4>
+      </div>
+      <div class="col-3">
+       
+      </div>
+      <div class="col-1">
+        <i (click)="showReceipt = false" class="fa fa-close text-danger text-right p-3"></i>
+      </div>
+    </div>
+    <hr>
+    <div class="row text-center">
+      <div class="col-12">
+        <div>
+          Rent Date: <h5>{{rentSum.rentDate | date: 'dd-MM-yyyy'}}</h5>
+          Return Date: <h5>{{rentSum.returnDate | date: 'dd-MM-yyyy'}}</h5>
+          Price <h5>{{rentSum.price | currency}}</h5>
+
+        </div>
+      </div>
+    </div>
+    <hr>
+    <div class="row text-center">
+      <div class="col-12">
+        Actual Return Date: <h5>{{rentSum.actualReturnDate | date: 'dd-MM-yyyy'}}</h5>
+        Late Price: <h5>{{rentSum.latePrice | currency}}</h5>
+      </div>
+    </div>
+    <hr>
+    <div class="row text-center">
+      <div class="col-12">
+        Total Price: <h5>{{rentSum.totalPrice | currency}}</h5>
+      </div>
+    </div>
+  </div>
+
+<!-- End Employee Panel -->

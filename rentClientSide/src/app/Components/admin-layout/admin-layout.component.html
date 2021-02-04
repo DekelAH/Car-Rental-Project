@@ -1,0 +1,1043 @@
+<!-- Add Vehicle Type Modal -->
+<div class="modal fade" id="addNewVehicleTypeModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top" [src]="imageUrl" alt="Card image" style="width: 40%; height: 40%;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" placeholder="Manufacturer" [(ngModel)]="newVehicleType.Manufacturer"
+              name="manufacturer">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Model" [(ngModel)]="newVehicleType.Model" name="model">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Year" [(ngModel)]="newVehicleType.ModelYear" name="modelYear"
+              type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Gear:</label>
+            <select class="form-control" [(ngModel)]="newVehicleType.Gear" name="gear">
+              <option>Auto</option>
+              <option>Manual</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Class:</label>
+            <select class="form-control" [(ngModel)]="newVehicleType.Class" name="class">
+              <option>Sedan</option>
+              <option>SUV</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Daily Cost" [(ngModel)]="newVehicleType.DayCost" name="DayCost"
+              type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Late Day Cost" [(ngModel)]="newVehicleType.LateDayCost"
+              name="LateDayCost" type="number">
+          </div>
+          <hr>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" (change)="modalImageChange($event)">
+            <label style="text-align: left;" class="custom-file-label" for="customFileLang">Upload Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="postNewVehicleType()"
+          data-dismiss="modal" aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Vehicle Type Modal -->
+
+<!-- Add Vehicle Area Modal -->
+<div class="modal fade" id="addNewVehicleArea" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top" [src]="imageUrl" alt="Card image" style="width: 50%; height: 50%;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleArea.VehicleTypeID" placeholder="Vehicle Type ID"
+              name="vehicleTypeID" type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleArea.CurrentKMPH" placeholder="Current KM" type="number"
+              name="currentKMPH">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Is Available:</label>
+            <select class="form-control" [(ngModel)]="newVehicleArea.IsAvailable" name="isAvailable">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Is Proper:</label>
+            <select class="form-control" [(ngModel)]="newVehicleArea.IsProper" name="isProper">
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleArea.LicenseNum" placeholder="License Number"
+              type="number" name="licenseNum">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleArea.BranchID" placeholder="Branch" type="number"
+              name="branchID">
+          </div>
+          <hr>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" (change)="modalVehicleAreaImageChange($event)">
+            <label style="text-align: left;" class="custom-file-label" for="customFileLang">Upload Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="postNewVehicleArea()"
+          data-dismiss="modal" aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Vehicle Area Modal -->
+
+<!-- Add Vehicle Rent Area Modal -->
+<div class="modal fade" id="addNewVehicleRentArea" role="dialog" aria-labelledby="exampleModalCenterTitle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleRentArea.UserID" placeholder="User ID" name="userID"
+              type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Rental Date:</label>
+            <input class="form-control" [(ngModel)]="newVehicleRentArea.RentDate" type="date" name="rentDate">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Return Date:</label>
+            <input class="form-control" [(ngModel)]="newVehicleRentArea.ReturnDate" type="date" name="returnDate">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Acutal Return Date:</label>
+            <input class="form-control" [(ngModel)]="newVehicleRentArea.ActualReturnDate" type="date"
+              name="actualReturnDate">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newVehicleRentArea.VehicleAreaID"
+              placeholder="Vehicle Rent Area ID" name="vehicleRentAreaID" type="number">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="postNewVehicleRentArea()"
+          data-dismiss="modal" aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Vehicle Rent Area Modal -->
+
+<!-- Add Branch Modal -->
+<div class="modal fade" id="addNewBranch" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newBranch.Address" placeholder="Address" name="address"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newBranch.Latitude" placeholder="Latitude" type="number"
+              name="latitude">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newBranch.Longtitude" placeholder="Longtitude" type="number"
+              name="longtitude">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" [(ngModel)]="newBranch.BranchName" placeholder="Branch Name" type="text"
+              name="branchName">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="PostNewBranch()"
+          data-dismiss="modal" aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Branch Modal -->
+
+<!-- Add User Modal -->
+<div class="modal fade" id="addNewUserModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top" [src]="imageUrl" alt="Card image" style="width: 40%; height: 40%;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" placeholder="Full Name" [(ngModel)]="newUser.FullName" name="fullName"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="ID" [(ngModel)]="newUser.ID" name="id" type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="User Name" [(ngModel)]="newUser.UserName" name="userName"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">BirthDate:</label>
+            <input class="form-control" [(ngModel)]="newUser.BirthDate" name="birthDate" type="date">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Gender:</label>
+            <select class="form-control" [(ngModel)]="newUser.Gender" name="gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Email" [(ngModel)]="newUser.Email" name="email" type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Password" [(ngModel)]="newUser.Password" name="password"
+              type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Valid Password" [(ngModel)]="newUser.ValidPassword"
+              name="validPassword" type="text">
+          </div>
+          <hr>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" (change)="modalUserImageChange($event)">
+            <label style="text-align: left;" class="custom-file-label" for="customFileLang">Upload Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="PostNewUser()" data-dismiss="modal"
+          aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add User Modal -->
+
+<!-- Add Employee Modal -->
+<div class="modal fade" id="addNewEmployeeModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top" [src]="imageUrl" alt="Card image" style="width: 40%; height: 40%;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" placeholder="Full Name" [(ngModel)]="newEmployee.EmployeeFullName" name="fullName"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="ID" [(ngModel)]="newEmployee.PrivateEmployeeID" name="id" type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="User Name" [(ngModel)]="newEmployee.EmployeeUserName"
+              name="userName" type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">BirthDate:</label>
+            <input class="form-control" [(ngModel)]="newEmployee.EmployeeBirthDate" name="birthDate" type="date">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Gender:</label>
+            <select class="form-control" [(ngModel)]="newEmployee.EmployeeGender" name="gender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Email" [(ngModel)]="newEmployee.EmployeeEmail" name="email"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Password" [(ngModel)]="newEmployee.EmployeePassword"
+              name="password" type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Valid Password" [(ngModel)]="newEmployee.EmployeeValidPassword"
+              name="validPassword" type="text">
+          </div>
+          <hr>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang"
+              (change)="modalEmployeeImageChange($event)">
+            <label style="text-align: left;" class="custom-file-label" for="customFileLang">Upload Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="PostNewEmployee()"
+          data-dismiss="modal" aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Employee Modal -->
+
+<!-- Add Admin Modal -->
+<div class="modal fade" id="addNewAdminModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top" [src]="imageUrl" alt="Card image" style="width: 40%; height: 40%;">
+        </div>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <input class="form-control" placeholder="Full Name" [(ngModel)]="newAdmin.AdminFullName"
+              name="adminFullName" type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="ID" [(ngModel)]="newAdmin.PrivateAdminID" name="privateAdminID"
+              type="number">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="User Name" [(ngModel)]="newAdmin.AdminUserName"
+              name="adminUserName" type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">BirthDate:</label>
+            <input class="form-control" [(ngModel)]="newAdmin.AdminBirthDate" name="adminBirthDate" type="date">
+          </div>
+          <hr>
+          <div class="form-group">
+            <label style="float: left;">Gender:</label>
+            <select class="form-control" [(ngModel)]="newAdmin.AdminGender" name="adminGender">
+              <option>Male</option>
+              <option>Female</option>
+            </select>
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Email" [(ngModel)]="newAdmin.AdminEmail" name="adminEmail"
+              type="text">
+          </div>
+          <hr>
+          <div class="form-group">
+            <input class="form-control" placeholder="Password" [(ngModel)]="newAdmin.AdminPassword" name="adminPassword"
+              type="text">
+          </div>
+          <div class="form-group">
+            <input class="form-control" placeholder="Valid Password" [(ngModel)]="newAdmin.AdminValidPassword"
+              name="adminValidPassword" type="text">
+          </div>
+          <hr>
+          <div class="custom-file">
+            <input type="file" class="custom-file-input" id="customFileLang" (change)="modalAdminImageChange($event)">
+            <label style="text-align: left;" class="custom-file-label" for="customFileLang">Upload Image</label>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary saveVehicleTypeModal" (click)="PostNewAdmin()" data-dismiss="modal"
+          aria-label="Close">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- End Add Admin Modal -->
+
+<!-- Show Vehicle Type Detailes -->
+<div class="modal fade" id="showVehicleTypeDetailes" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content border border-warning">
+      <div>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span style="color: red;" aria-hidden="true">&times;</span>
+        </button>
+        <div style=" padding: 0%; margin: 0%;" class="container-fluid">
+          <img class="card-img-top " [src]="imageUrl" alt="Card image" style="width: 40%; height: 40%;">
+        </div>
+      </div>
+    
+        <div class="modal-body" *ngFor="let v of currentVehicle">
+          <div>
+            <p>Manufacturer: {{v.Manufacturer}}</p>
+            <hr>
+            <p>Model: {{v.Model}}</p>
+            <hr>
+            <p>Year: {{v.ModelYear}}</p>
+            <hr>
+            <p>Gear: {{v.Gear}}</p>
+            <hr>
+            <p>Class: {{v.Class}}</p>
+            <hr>
+            <p>Day Cost: {{v.DayCost | currency}}</p>
+            <hr>
+            <p>Late Day Cost: {{v.LateDayCost | currency}}</p>
+            <hr>
+          </div>
+        </div> 
+    </div>
+  </div>
+</div>
+<!-- End Show Vehicle Type Detailes -->
+
+<!-- Panel Control Table -->
+<mat-tab-group mat-align-tabs="center">
+
+  <!-- VehicleType Control Table -->
+  <mat-tab label="Vehicle Types">
+    <img class="gifLoader" *ngIf="!allVehicleTypes" src="../../../assets/Images/loadingGif.gif">
+
+    <div *ngIf="allVehicleTypes" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal"
+        data-target="#addNewVehicleTypeModal"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allVehicleTypes" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Manufacturer</th>
+          <th scope="col">Model</th>
+          <th scope="col">Year</th>
+          <th scope="col">Gear</th>
+          <th scope="col">Class</th>
+          <th scope="col">Daily Cost</th>
+          <th scope="col">Late Day Cost</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let v of allVehicleTypes">
+        <tr>
+          <th scope="row">{{v.VehicleTypeID}}</th>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.Manufacturer}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleManu style="width:60%" class="form-control-sm" [value]="v.Manufacturer" type="text">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.Model}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleModel style="width:60%" class="form-control-sm" [value]="v.Model" type="text">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.ModelYear}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleYear style="width:60%" class="form-control-sm" [value]="v.ModelYear" type="number">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.Gear}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleGear style="width:60%" class="form-control-sm" [value]="v.Gear" type="text">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.Class}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleClass style="width:60%" class="form-control-sm" [value]="v.Class" type="text">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.DayCost | currency}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleDayCost style="width:60%" class="form-control-sm" [value]="v.DayCost" type="number">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">{{v.LateDayCost | currency}}</td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input #vehicleLateDayCost style="width:60%" class="form-control-sm" [value]="v.LateDayCost" type="number">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle">
+            <img class="imageStyle" src="{{v.VehicleImage}}">
+          </td>
+          <td *ngIf="v.VehicleTypeID==editVehicle">
+            <input [value]="v.VehicleImage" style="width:60%" (change)="editImageUpload($event)" type="file">
+          </td>
+
+          <td *ngIf="v.VehicleTypeID!=editVehicle"><button class="editBtn" (click)="edit(v.VehicleTypeID)">
+              <i class="fa fa-pencil"></i></button></td>
+
+          <td *ngIf="v.VehicleTypeID==editVehicle"><button class="editBtn" (click)="updateVehicle(v.VehicleTypeID)">
+              <i class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="delVehicleTypeFunc(v.VehicleTypeID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+  <!-- End VehicleType Control Table -->
+
+  <!-- Vehicle Area Control Table -->
+  <mat-tab label="Vehicle Area">
+    <div *ngIf="allVehicleArea" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal"
+        data-target="#addNewVehicleArea"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allVehicleArea" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Vehicle Type</th>
+          <th scope="col">Current KM</th>
+          <th scope="col">Availability</th>
+          <th scope="col">Is Proper</th>
+          <th scope="col">License Number</th>
+          <th scope="col">Branch</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let va of allVehicleArea">
+        <tr>
+          <th scope="row">{{va.VehicleAreaID}}</th>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.VehicleTypeID}} - <button class="btn btn-warning" (click)="modalDetails(va.VehicleTypeID)" data-toggle="modal"
+              data-target="#showVehicleTypeDetailes">Details</button></td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editvehicleTypeID style="width:60%" class="form-control-sm" [value]="va.VehicleTypeID"
+              type="number">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.CurrentKMPH}}</td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editcurrentKMPH style="width:60%" class="form-control-sm" [value]="va.CurrentKMPH" type="number">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.IsAvailable}}</td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editisAvailable style="width:60%" class="form-control-sm" [value]="va.IsAvailable" type="text">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.IsProper}}</td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editisProper style="width:60%" class="form-control-sm" [value]="va.IsProper" type="text">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.LicenseNum}}</td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editlicenseNum style="width:60%" class="form-control-sm" [value]="va.LicenseNum" type="number">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">{{va.BranchID}}</td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input #editbranchID style="width:60%" class="form-control-sm" [value]="va.BranchID" type="number">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea">
+            <img class="imageStyle" src="{{va.VehicleAreaImage}}">
+          </td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea">
+            <input style="width:60%" (change)="editImageUpload($event)" type="file">
+          </td>
+
+          <td *ngIf="va.VehicleAreaID!=editVehicleArea"><button class="editBtn" (click)="editVArea(va.VehicleAreaID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="va.VehicleAreaID==editVehicleArea"><button class="editBtn"
+              (click)="updateVehicleArea(va.VehicleAreaID)">
+              <i class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="delVehicleAreaFunc(va.VehicleAreaID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+  <!-- End Vehicle Area Control Table -->
+
+  <!-- Vehicle Rent Area Control Table -->
+  <mat-tab label="Vehicle Rent Area">
+    <div *ngIf="allVehicleRentArea" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal"
+        data-target="#addNewVehicleRentArea"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allVehicleRentArea" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">User ID</th>
+          <th scope="col">Rental Date</th>
+          <th scope="col">Return Date</th>
+          <th scope="col">Actual Return Date</th>
+          <th scope="col">Vehicle Area ID</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let vra of allVehicleRentArea">
+        <tr>
+          <th scope="row">{{vra.VehicleRentAreaID}}</th>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea">{{vra.UserID}}</td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea">
+            <input #userID style="width:60%" class="form-control-sm" [value]="vra.UserID" type="number">
+          </td>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea">{{vra.RentDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea">
+            <input #rentDate style="width:60%" class="form-control-sm" [value]="vra.RentDate" type="date">
+          </td>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea">{{vra.ReturnDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea">
+            <input #returnDate style="width:60%" class="form-control-sm" [value]="vra.ReturnDate" type="date">
+          </td>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea">{{vra.ActualReturnDate | date:'dd-MM-yyyy'}}</td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea">
+            <input #actualReturnDate style="width:60%" class="form-control-sm" [value]="vra.ActualReturnDate"
+              type="date">
+          </td>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea">{{vra.VehicleAreaID}}</td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea">
+            <input #vehicleAreaID style="width:60%" class="form-control-sm" [value]="vra.VehicleAreaID" type="number">
+          </td>
+
+          <td *ngIf="vra.VehicleRentAreaID!=editVehicleRentArea"><button class="editBtn"
+              (click)="editVRentArea(vra.VehicleRentAreaID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="vra.VehicleRentAreaID==editVehicleRentArea"><button class="editBtn"
+              (click)="updateVehicleRentArea(vra.VehicleRentAreaID)"><i class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;"
+              (click)="delVehicleRentAreaFunc(vra.VehicleRentAreaID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+  <!-- End Vehicle Rent Area Control Table -->
+
+  <!-- Branch Table -->
+
+  <mat-tab label="Branch">
+    <div *ngIf="allBranches" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal" data-target="#addNewBranch"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allBranches" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Address</th>
+          <th scope="col">Latitude</th>
+          <th scope="col">Longtitude</th>
+          <th scope="col">Branch Name</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let b of allBranches">
+        <tr>
+          <th scope="row">{{b.BranchID}}</th>
+
+          <td *ngIf="b.BranchID!=editBranch">{{b.Address}}</td>
+          <td *ngIf="b.BranchID==editBranch">
+            <input #address style="width:60%" class="form-control-sm" [value]="b.Address" type="text">
+          </td>
+
+          <td *ngIf="b.BranchID!=editBranch">{{b.Latitude}}</td>
+          <td *ngIf="b.BranchID==editBranch">
+            <input #latitude style="width:60%" class="form-control-sm" [value]="b.Latitude" type="number">
+          </td>
+
+          <td *ngIf="b.BranchID!=editBranch">{{b.Longtitude}}</td>
+          <td *ngIf="b.BranchID==editBranch">
+            <input #longtitude style="width:60%" class="form-control-sm" [value]="b.Longtitude" type="number">
+          </td>
+
+          <td *ngIf="b.BranchID!=editBranch">{{b.BranchName}}</td>
+          <td *ngIf="b.BranchID==editBranch">
+            <input #branchName style="width:60%" class="form-control-sm" [value]="b.BranchName" type="text">
+          </td>
+
+          <td *ngIf="b.BranchID!=editBranch"><button class="editBtn" (click)="editBranchFunc(b.BranchID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="b.BranchID==editBranch"><button class="editBtn" (click)="UpdateBranch(b.BranchID)"><i
+                class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="DeleteBranchFunc(b.BranchID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <!-- End Branch Table -->
+
+  <!-- User Table -->
+
+  <mat-tab label="Users">
+    <div *ngIf="allUsers" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal" data-target="#addNewUserModal"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allUsers" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">User ID</th>
+          <th scope="col">User Name</th>
+          <th scope="col">BirthDate</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Valid Password</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let u of allUsers">
+        <tr>
+          <th scope="row">{{u.UserID}}</th>
+
+          <td *ngIf="u.UserID!=editUser">{{u.FullName}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #fullName style="width:60%" class="form-control-sm" [value]="u.FullName" type="text">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.ID}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #id style="width:60%" class="form-control-sm" [value]="u.ID" type="number">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.UserName}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #userName style="width:60%" class="form-control-sm" [value]="u.UserName" type="text">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.BirthDate | date: 'dd-MM-yyyy'}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #birthDate style="width:60%" class="form-control-sm" [value]="u.BirthDate" type="date">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.Gender}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <select #gender style="width:60%" class="form-control-sm" [value]="u.Gender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.Email}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #email style="width:60%" class="form-control-sm" [value]="u.Email" type="text">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.Password}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #password style="width:60%" class="form-control-sm" [value]="u.Password" type="text">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">{{u.ValidPassword}}</td>
+          <td *ngIf="u.UserID==editUser">
+            <input #validPassword style="width:60%" class="form-control-sm" [value]="u.ValidPassword" type="text">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser">
+            <img class="imageStyle" src="{{u.UserImage}}">
+          </td>
+          <td *ngIf="u.UserID==editUser">
+            <input [value]="u.UserImage" style="width:60%" (change)="editImageUpload($event)" type="file">
+          </td>
+
+          <td *ngIf="u.UserID!=editUser"><button class="editBtn" (click)="editUserFunc(u.UserID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="u.UserID==editUser"><button class="editBtn" (click)="updateUser(u.UserID)"><i
+                class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="DeleteUserFunc(u.UserID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <!-- End User Table -->
+
+  <!-- Employee Table -->
+
+  <mat-tab label="Employees">
+    <div *ngIf="allEmployees" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal"
+        data-target="#addNewEmployeeModal"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allEmployees" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Employee ID</th>
+          <th scope="col">Employee User Name</th>
+          <th scope="col">BirthDate</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Valid Password</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let e of allEmployees">
+        <tr>
+          <th scope="row">{{e.EmployeeID}}</th>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeFullName}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeeFullName style="width:60%" class="form-control-sm" [value]="e.EmployeeFullName" type="text">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.PrivateEmployeeID}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #privateEmployeeID style="width:60%" class="form-control-sm" [value]="e.PrivateEmployeeID" type="number">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeUserName}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeeUserName style="width:60%" class="form-control-sm" [value]="e.EmployeeUserName" type="text">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeBirthDate | date: 'dd-MM-yyyy'}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeeBirthDate style="width:60%" class="form-control-sm" [value]="e.EmployeeBirthDate"
+              type="date">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeGender}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <select #employeeGender style="width:60%" class="form-control-sm" [value]="e.EmployeeGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeEmail}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeeEmail style="width:60%" class="form-control-sm" [value]="e.EmployeeEmail" type="text">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeePassword}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeePassword style="width:60%" class="form-control-sm" [value]="e.EmployeePassword" type="text">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">{{e.EmployeeValidPassword}}</td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input #employeeValidPassword style="width:60%" class="form-control-sm" [value]="e.EmployeeValidPassword"
+              type="text">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee">
+            <img class="imageStyle" src="{{e.EmployeeImage}}">
+          </td>
+          <td *ngIf="e.EmployeeID==editEmployee">
+            <input  style="width:60%" (change)="editImageUpload($event)" type="file">
+          </td>
+
+          <td *ngIf="e.EmployeeID!=editEmployee"><button class="editBtn" (click)="editEmployeeFunc(e.EmployeeID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="e.EmployeeID==editEmployee"><button class="editBtn" (click)="updateEmployee(e.EmployeeID)"><i
+                class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="DeleteEmployeeFunc(e.EmployeeID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <!-- End Employee Table -->
+
+  <!-- Admin Table -->
+
+  <mat-tab label="Admin">
+    <div *ngIf="allAdmins" class="bg-dark">
+      <button class="btn btn-success addVehicleBtn" data-toggle="modal"
+        data-target="#addNewAdminModal"><b>+</b></button>
+    </div>
+
+    <table *ngIf="allAdmins" class="table table-dark table-hover">
+      <thead>
+        <tr class="tableHeader">
+          <th scope="col">ID</th>
+          <th scope="col">Full Name</th>
+          <th scope="col">Admin ID</th>
+          <th scope="col">Admin User Name</th>
+          <th scope="col">BirthDate</th>
+          <th scope="col">Gender</th>
+          <th scope="col">Email</th>
+          <th scope="col">Password</th>
+          <th scope="col">Valid Password</th>
+          <th scope="col">Image</th>
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let a of allAdmins">
+        <tr>
+          <th scope="row">{{a.AdminID}}</th>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminFullName}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminFullName style="width:60%" class="form-control-sm" [value]="a.AdminFullName" type="text">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.PrivateAdminID}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #privateAdminID style="width:60%" class="form-control-sm" [value]="a.PrivateAdminID" type="number">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminUserName}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminUserName style="width:60%" class="form-control-sm" [value]="a.AdminUserName" type="text">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminBirthDate | date: 'dd-MM-yyyy'}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminBirthDate style="width:60%" class="form-control-sm" [value]="a.AdminBirthDate" type="date">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminGender}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <select #adminGender style="width:60%" class="form-control-sm" [value]="a.AdminGender">
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+            </select>
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminEmail}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminEmail style="width:60%" class="form-control-sm" [value]="a.AdminEmail" type="text">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminPassword}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminPassword style="width:60%" class="form-control-sm" [value]="a.AdminPassword" type="text">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">{{a.AdminValidPassword}}</td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input #adminValidPassword style="width:60%" class="form-control-sm" [value]="a.AdminValidPassword"
+              type="text">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin">
+            <img class="imageStyle" src="{{a.AdminImage}}">
+          </td>
+          <td *ngIf="a.AdminID==editAdmin">
+            <input [value]="a.AdminImage" style="width:60%" (change)="editImageUpload($event)" type="file">
+          </td>
+
+          <td *ngIf="a.AdminID!=editAdmin"><button class="editBtn" (click)="editAdminFunc(a.AdminID)">
+              <i class="fa fa-pencil"></i></button></td>
+          <td *ngIf="a.AdminID==editAdmin"><button class="editBtn" (click)="updateAdmin(a.AdminID)"><i
+                class="fa fa-check"></i></button></td>
+
+          <td><button style="background-color: red; border: none;" (click)="DeleteAdminFunc(a.AdminID)">
+              <i class="fa fa-trash-o"></i></button></td>
+        </tr>
+      </tbody>
+    </table>
+  </mat-tab>
+
+  <!-- End Admin Table -->
+
+</mat-tab-group>
+<!-- End Panel Control Table -->

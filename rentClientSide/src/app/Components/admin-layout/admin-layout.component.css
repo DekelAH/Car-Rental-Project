@@ -1,0 +1,65 @@
+.tableHeader{
+
+    color:rgb(255,184,10);
+}
+
+.addVehicleBtn{
+
+    background-color: rgb(255,184,10);
+    transform: translateX(1670%);
+    border: none;
+    width: 2.8%;
+}
+
+.gifLoader{
+
+    width: 150px;
+    transform: translateY(100%);
+}
+
+.modal-header{
+
+    text-align: center;
+}
+
+.modal-title{
+
+    color: rgb(255,184,10);
+}
+
+.saveVehicleTypeModal{
+
+    width: 100%; 
+    background-color: rgb(255,184,10);
+    border: none;
+}
+
+.mat-tab-label {
+    
+    min-width: 25px !important;
+    padding: 5px;
+    background-color: transparent;
+    color: red;
+    font-weight: 700;
+    border:1px solid black;
+    border-radius:10%;
+}
+
+.imageStyle { 
+
+    zoom:0.1;
+    transition: 0.3s;
+    width:50%;
+    height:auto;   
+}
+
+.imageStyle:hover {
+
+    transform: scale(1.5);
+}
+
+.editBtn{
+
+    border: none; 
+    background-color: green;
+}

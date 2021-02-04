@@ -1,0 +1,130 @@
+<hr>
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-sm-10">
+            <h1>Hi! {{userToShow.UserName}}</h1>
+        </div>
+        <div class="col-sm-2">
+            <img style="width: 85%;" title="profile image" class="img-circle img-responsive"
+                src={{userToShow.UserImage}}>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-3">
+            <!--left col-->
+            <ul class="list-group border border-warning rounded">
+                <li class="list-group-item bg-warning" style="text-decoration: underline">Profile</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Full
+                            Name:</strong></span>{{userToShow.FullName}}</li>
+                <li class="list-group-item text-right"><span class="pull-left"><strong>Birth
+                            Date:</strong></span>{{userToShow.BirthDate | date:'dd-MM-yyyy'}}</li>
+                <li class="list-group-item text-right"><span
+                        class="pull-left"><strong>Gender:</strong></span>{{userToShow.Gender}}</li>
+                <li class="list-group-item text-right"><span
+                        class="pull-left"><strong>Email:</strong></span>{{userToShow.Email}}</li>
+            </ul>
+        </div>
+        <div class="col-sm-9">
+            <mat-tab-group mat-align-tabs="center">
+                <mat-tab label="My Orders">
+                    <div class="container bg-light rounded border border-warning">
+                        <div class="row text-center">
+                        <div class="col-12">
+                            <table class="table table-hover table-striped">
+                                <thead class="bg-dark text-warning">
+                                    <tr>
+                                        <th>Order ID</th>
+                                        <th>License Number</th>
+                                        <th>Rent Date</th>
+                                        <th>Return Date</th>
+                                        <th>Actual Return Date</th>
+                                        <th>Image</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let v of allVehicleRentArea">
+                                        <th>{{v.VehicleRentAreaID}}</th>
+                                        <td>{{v.LicenseNum}}</td>
+                                        <td>{{v.RentDate | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{v.ReturnDate | date:'dd-MM-yyyy'}}</td>
+                                        <td>{{v.ActualReturnDate | date:'dd-MM-yyyy'}}</td>
+                                        <td style="width:12%"><img class="w-100" src={{v.VehicleAreaImage}}></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="Private Info">
+                    <div class="container bg-light rounded border border-warning">
+                        <div style="height:45px;" class="row bg-warning text-center">
+                            <div class="col-12">
+                               
+                            </div>
+                        </div>
+                    <div class="row p-2 text-center">
+                        <div class="col-6">
+                            <input #fullName type="text" placeholder="Full Name" class="form-control  mt-1" [value]="userToShow.FullName">
+                        </div>
+                        <div class="col-6">
+                            <input #userName type="text" placeholder="User Name" class="form-control  mt-1" [value]="userToShow.UserName">
+                        </div>
+                    </div>
+
+                    <div class="row  p-2 mt-1 text-center">
+                        <div class="col-3"> 
+                            <label class="form-control">Birth Date</label>             
+                           
+                        </div>
+                        <div class="col-3">                 
+                            <input #birthDate  type="date" class="form-control" [value]="userToShow.BirthDate">
+                        </div>
+                        <div class="col-6">
+                            <select #gender class="form-control" [value]="userToShow.Gender">
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row p-2 mt-1 text-center">
+                        <div class="col-6">
+                           
+                            <input #id type="number" placeholder="ID" class="form-control" [value]="userToShow.ID"> 
+                        </div>
+                        <div class="col-6">
+                            <input #email type="text" placeholder="Email" class="form-control" [value]="userToShow.Email">
+                        </div>
+                    </div>
+                    <div class="row p-2 mt-1 text-center">
+                        <div class="col-6">
+                            <input #password type="password" placeholder="Passord" class="form-control" [value]="userToShow.Password">
+                        </div>
+                        <div class="col-6">
+                            <input #validPassword type="password" placeholder="Valid Passord" class="form-control" [value]="userToShow.ValidPassword">
+                        </div>
+                    </div>
+                    <div class="row p-2 mt-1 text-center">
+                        <div class="col-3"></div>
+                        <div class="col-6">
+                            <label style="text-decoration: underline">Image</label>
+                            <input type="file" class="form-control " (change)="modalUpdateUserImageChange($event)">  
+                        </div>
+                        <div class="col-3"></div>
+                    </div>
+                    <div class="row p-2 mt-4 text-center">
+                        <div class="col-1"></div>
+                        <div class="col-10">
+                            <button class="btn btn-warning form-control border border-dark" (click)="updateUserArea(userToShow.UserID)">Save</button>
+                        </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+                </mat-tab>
+            </mat-tab-group>
+
+
+        </div>
+        <!--/col-9-->
+    </div>

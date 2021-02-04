@@ -1,0 +1,122 @@
+<div class="container">
+    <div class="row carFilterRow">
+        <div class="col-3">
+            <label>Manufacturer</label>
+        </div>
+        <div class="col-3">
+            <label>Model</label>
+        </div>
+        <div class="col-3">
+            <label>Year</label>
+        </div>
+        <div class="col-3">
+            <label>Gear</label>
+        </div>
+    </div>
+    <div class="row carFilterSelect">
+        <div class="col-3">
+            <select class="form-control" id="manufacturers" name="manufacturers" [(ngModel)]="manuPicker"
+                (ngModelChange)="modelPicker($event,'manufacturer')">
+                <option [ngValue]="null" [disabled]="true">Choose Manufacturer</option>
+                <option *ngFor="let manu of allManufacturers" [ngValue]="manu.Manufacturer">
+                    {{manu.Manufacturer}}
+                </option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="form-control" id="models" name="models" [(ngModel)]="modelFilter"
+                (ngModelChange)="modelPicker($event, 'model')">
+                <option [ngValue]="null" [disabled]="true">Choose Model</option>
+                <option *ngFor="let model of allModels">
+                    {{model.Model}}
+                </option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="form-control" (ngModelChange)="modelPicker($event, 'year')" [(ngModel)]="yearPicker">
+                <option [ngValue]="null" [disabled]="true">Choose Year</option>
+                <option *ngFor="let year of allYears">
+                    {{year.ModelYear}}
+                </option>
+            </select>
+        </div>
+        <div class="col-3">
+            <select class="form-control" (ngModelChange)="modelPicker($event, 'gear')" [(ngModel)]="gearPicker">
+                <option [ngValue]="null" [disabled]="true">Choose Gear</option>
+                <option value="Auto">Auto</option>
+                <option value="Manual">Manual</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-8">
+        <div class="form-group">
+            <label style="margin-right: 5px; transform: translateX(-90%);">Free Search</label>
+            <input style="transform: translateX(-40%);" type="text" [(ngModel)]="searchName">
+        </div>
+    </div>
+    <div class="col-2">
+        <button class="fa fa-refresh refBtn" type="button" (click)="refreshFunc($event)"></button>
+    </div>
+</div>
+
+<img style="width: 150px;" *ngIf="!allVehicleTypes" src="../../../assets/Images/loadingGif.gif">
+
+<div class="container">
+    <div *ngIf="allVehicleTypes" class="row">
+        <div *ngFor="let vehicle of allVehicleArea">
+            <div *ngFor="let v of vehicle.Details | rentalCarFilter: { Manufacturer: searchName ,Model: searchName, 
+                    Gear: searchName, ModelYear: searchName, DayCost: searchName } : false">
+                <div class="col-12">
+                    <div class="card carCard">
+                        <img class="card-img-top imageSize" [src]="v.VehicleImage" alt="Card image">
+                        <div class="card-body">
+                            <h4 class="card-title">{{v.Manufacturer}}</h4>
+                            <h5 class="card-title">{{v.Model}}</h5>
+                            <hr>
+                            <p>Gear: {{v.Gear}}</p>
+                            <hr>
+                            <p>Year: {{v.ModelYear}}</p>
+                            <hr>
+                            <p>Daily Cost: {{v.DayCost | currency}}</p>
+                            <hr>
+                            <a (click)="sendToBooking(v, vehicle)" class="btn btn-primary">Book Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<hr>
+
+<div class="container bg-light">
+    <div class="row text-center">
+        <div class="col-12">
+            <h5>Recently Viewed Vehicles</h5>
+        </div>
+    </div>
+    <div class="row text-center">
+        <div *ngFor="let v of sessionToShow">
+        <div style="zoom:0.2" class="col-12">
+            <div  class="card">
+                <img style="width:1000px" class="card-img-top" [src]="v.VehicleImage" alt="Card image">
+                <div class="card-body">
+                    <h4 class="card-title">{{v.Manufacturer}}</h4>
+                    <h5 class="card-title">{{v.Model}}</h5>
+                    <hr>
+                    <p>Gear: {{v.Gear}}</p>
+                    <hr>
+                    <p>Year: {{v.ModelYear}}</p>
+                    <hr>
+                    <p>Daily Cost: {{v.DayCost}}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+</div>

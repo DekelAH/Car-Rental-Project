@@ -1,0 +1,115 @@
+<div class="container" style="padding: 30px;">
+  <div class="row selectRow">
+    <div class="col-5 selectHeader">
+      <label>Pick-up Location</label>
+    </div>
+    <div class="col-3 selectHeader">
+      <label>Pick-up Date</label>
+    </div>
+    <div class="col-3 selectHeader">
+      <label>Drop-off Date</label>
+    </div>
+    <div class="col-1 selectHeader">
+
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-5 selectTab">
+      <select class="form-control" [(ngModel)]="pickUpLocation" #locationName name="locationName">
+        <option [ngValue]="null">Choose Location</option>
+        <option *ngFor="let b of allBranches">
+          {{b.BranchName}}
+        </option>
+      </select>
+    </div>
+    <div class="col-3 selectTab">
+      <input class="form-control tabDate" type="date" [(ngModel)]="pickUpDate">
+    </div>
+
+    <div class="col-3 selectTab">
+      <input class="form-control tabDate" type="date" [(ngModel)]="dropOffDate">
+    </div>
+    <div class="col-1 selectTab">
+      <button class="findVehicleBtn rounded" (click)="sendInfoToBooking(pickUpLocation, pickUpDate, dropOffDate)">Find A
+        Vehicle</button>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-12">
+      <div id="demo" class="carousel slide" data-ride="carousel">
+
+        <!-- Indicators -->
+        <ul class="carousel-indicators">
+          <li data-target="#demo" data-slide-to="0" class="active"></li>
+          <li data-target="#demo" data-slide-to="1" class="active"></li>
+          <li data-target="#demo" data-slide-to="2" class="active"></li>
+        </ul>
+
+        <!-- The slideshow -->
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="../../../assets/Images/Home Images/bmwX3.jpg" alt="Menu BmwX3" width="1500" height="500">
+          </div>
+          <div class="carousel-item">
+            <img src="../../../assets/Images/Home Images/road-view.jpg" alt="Menu Desert View" width="1500"
+              height="500">
+          </div>
+          <div class="carousel-item">
+            <img src="../../../assets/Images/Home Images/city-view.jpg" alt="Menu City View" width="1500" height="500">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row" style="padding-top: 30px;">
+    <div class="col-12">
+      <h3>Experience our car rental and enjoy the</h3>
+      <h3>freedom to explore when, where and how you want.</h3>
+    </div>
+  </div>
+</div>
+
+<div class="container" style="text-align: center;">
+  <div class="row" style="padding-top: 30px; padding-bottom: 30px;">
+    <div class="col-4 cardBlock">
+      <div class="card" style="width:300px;">
+        <img class="card-img-top" src="../../../assets/Images/Menu Cards Images/customer_support.jpeg" alt="Card image"
+          style="width:100%;height:250px">
+        <div class="card-body">
+          <h4 class="card-title">Customer Service</h4>
+          <p class="card-text">Our customer service is working 24/7</p>
+          <a routerLink="/contactUs" class="btn btn-primary">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 cardBlock" style="float: left;">
+      <div class="card" style="width:300px;">
+        <img class="card-img-top" src="../../../assets/Images/Menu Cards Images/Towing-Service.jpg" alt="Card image"
+          style="width:100%;height:250px">
+        <div class="card-body">
+          <h4 class="card-title">Tow Service</h4>
+          <p class="card-text">Our tow service is working 24/7.</p>
+          <a routerLink="/contactUs" class="btn btn-primary">Contact</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-4 cardBlock" style="float: left;">
+      <div class="card" style="width:300px;">
+        <img class="card-img-top" src="../../../assets/Images/Menu Cards Images/car-group.jpg" alt="Card image"
+          style="width:100%;height:250px">
+        <div class="card-body">
+          <h4 class="card-title">Wide Variety</h4>
+          <p class="card-text">Choose your rental car from our wide variety</p>
+          <a routerLink="/vehicles" class="btn btn-primary">Select</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

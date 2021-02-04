@@ -1,0 +1,67 @@
+.selectRow{
+
+    text-align: left;
+}
+
+.selectHeader{
+
+    padding:5px;
+}
+
+.selectTab{
+
+    padding:5px;
+}
+
+.findVehicleBtn{
+
+    padding:5px;
+    color: white;
+    font-size: small;
+    border: none;
+    background-color: rgb(16, 156, 255);
+}
+
+.findVehicleBtn:hover{
+
+    background-color: rgba(16, 155, 255, 0.459);
+
+}
+
+.tabDate{
+
+    width:100%;
+    display: inline-block;
+   
+}
+
+.tabTime{
+
+    width:90%;
+    display: inline-block;
+    border-top-left-radius:0px;
+    border-bottom-left-radius:0px;
+    height:42px !important;
+}
+
+.carousel-inner img {
+
+    width: 100%;
+}
+
+.cardBlock{
+    
+    display: inline-block !important;    
+}
+
+button{
+    width: 200%;
+    height: 100%;
+    background-color: rgb(255,184,10);
+}
+
+.btn, .btn-primary{
+
+    background-color: rgb(255,184,10);
+    border: none;
+}
