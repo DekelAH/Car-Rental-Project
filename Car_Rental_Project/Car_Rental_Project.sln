@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Car_Rental_Project", "Car_Rental_Project.csproj", "{F75DE851-BB8C-4D87-AE2A-3BEF3CD9AF8A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentDataAccess", "..\RentDataAccess\RentDataAccess.csproj", "{8CAF519C-7E4B-408D-A7DE-7B103A14DC36}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F75DE851-BB8C-4D87-AE2A-3BEF3CD9AF8A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F75DE851-BB8C-4D87-AE2A-3BEF3CD9AF8A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F75DE851-BB8C-4D87-AE2A-3BEF3CD9AF8A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F75DE851-BB8C-4D87-AE2A-3BEF3CD9AF8A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8CAF519C-7E4B-408D-A7DE-7B103A14DC36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8CAF519C-7E4B-408D-A7DE-7B103A14DC36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8CAF519C-7E4B-408D-A7DE-7B103A14DC36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8CAF519C-7E4B-408D-A7DE-7B103A14DC36}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {23EE8E71-9478-4A25-9C6D-FEEBB5924330}
+	EndGlobalSection
+EndGlobal
